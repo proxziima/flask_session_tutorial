@@ -4,7 +4,7 @@ from flask_login import current_user, login_user
 
 from application import login_manager
 from application.forms import LoginForm, SignupForm
-from application.model import db, User
+from application.models import db, User
 
 # Blueprint Configuration
 auth = Blueprint('auth', __name__, template_folder='templates', static_folder='static')
@@ -28,7 +28,7 @@ def signup():
             print(user)
             return redirect(url_for('main.dashboard'))
         flash('A user already exists with that email address.')
-    return render_template('signup.html.j2',
+    return render_template('signup.jinja2',
                            title='Create an Account.',
                            form = form,
                            template="signup-page",
